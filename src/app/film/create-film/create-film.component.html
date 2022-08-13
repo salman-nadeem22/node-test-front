@@ -1,1 +1,143 @@
-<p>create-film works!</p>
+<div class="max-w-xl my-20 mx-auto px-4">
+  <p class="text-center font-bold text-2xl">Create New Film</p>
+  <form #createFilmForm="ngForm">
+    <div
+      class="my-6 flex flex-wrap -mx-3 sm:-mx-3 md:-mx-3 lg:-mx-3 xl:-mx-3"
+    >
+      <div
+        class="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <label class="text-sm" for="filmName">Film Name</label>
+        <input
+          #name="ngModel"
+          type="text"
+          name="name"
+          id="filmName"
+          [(ngModel)]="film.name"
+          placeholder="eg: Star Wars"
+          required
+          class="px-2 w-full mt-2 py-1.5 focus:outline-none border rounded-md"
+        />
+      </div>
+
+      <div
+        class="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <label class="text-sm" for="country">Country</label>
+        <input
+          #country="ngModel"
+          [(ngModel)]="film.country"
+          type="text"
+          name="country"
+          id="country"
+          placeholder="eg: USA"
+          required
+          class="px-2 w-full mt-2 py-1.5 focus:outline-none border rounded-md"
+        />
+      </div>
+
+      <div
+        class="overflow-visible my-3 px-3 w-full sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <label class="text-sm" for="genres">Genres</label>
+        <ng-select
+          id="genre"
+          class="mt-2"
+          [multiple]="true"
+          name="genre"
+          dropdownPosition="bottom"
+          [(ngModel)]="film.selectedGenre"
+          placeholder="Select Genres"
+        >
+          <ng-option *ngFor="let genre of genres" [value]="genre.id">{{
+            genre.name
+          }}</ng-option>
+        </ng-select>
+      </div>
+
+      <div
+        class="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <label class="text-sm" for="photo">Photo</label>
+        <input
+          #photo="ngModel"
+          [(ngModel)]="film.photo"
+          type="text"
+          name="photo"
+          id="photo"
+          placeholder="Url"
+          required
+          class="px-2 w-full mt-2 py-1.5 focus:outline-none border rounded-md"
+        />
+      </div>
+
+      <div
+        class="date-picker-container my-3 px-3 w-full sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <div class="text-sm mb-5" for="releaseDate">Release Date</div>
+        <ngx-datepicker
+          #releaseDate="ngModel"
+          [(ngModel)]="film.releaseDate"
+          name="releaseDate"
+          id="releaseDate"
+          required
+          class="px-2 w-full py-2 focus:outline-none border rounded-md"
+          [options]="datepickerOption"
+        ></ngx-datepicker>
+      </div>
+
+      <div
+        class="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <label class="text-sm" for="rating">Rating</label>
+        <input
+          #rating="ngModel"
+          [(ngModel)]="film.rating"
+          type="number"
+          name="rating"
+          id="rating"
+          min="1"
+          max="5"
+          placeholder="Select Rating"
+          required
+          class="px-2 w-full mt-2 py-1.5 focus:outline-none border rounded-md"
+        />
+      </div>
+      <div
+        class="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
+      >
+        <label class="text-sm" for="price">Price</label>
+        <input
+          #price="ngModel"
+          [(ngModel)]="film.price"
+          type="number"
+          name="price"
+          id="price"
+          min="1"
+          placeholder="Select Price"
+          required
+          class="px-2 w-full mt-2 py-1.5 focus:outline-none border rounded-md"
+        />
+      </div>
+      <div class="my-3 px-3 w-full">
+        <label class="text-sm" for="description">Description</label>
+        <textarea
+          #description="ngModel"
+          [(ngModel)]="film.description"
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Add movie description"
+          required
+          class="px-2 w-full mt-2 py-1.5 focus:outline-none border rounded-md"
+        ></textarea>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="block mx-auto py-1 rounded-md bg-blue-500 text-white w-full"
+    >
+      Submit
+    </button>
+  </form>
+</div>

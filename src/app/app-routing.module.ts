@@ -22,15 +22,18 @@ const routes: Routes = [
   },
   {
     path: 'films',
-    component: FilmListComponent,
     children: [
+      {
+        path: 'create',
+        component: CreateFilmComponent,
+      },
       {
         path: ':slug',
         component: SingleFilmComponent,
       },
       {
-        path: 'create',
-        component: CreateFilmComponent,
+        path: '',
+        component: FilmListComponent,
       },
     ],
   },

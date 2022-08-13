@@ -1289,6 +1289,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@ng-select/ng-select@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-8.3.0.tgz#900a160738dc059a4cefaf019d67643534652d01"
+  integrity sha512-AwAuDs+86++D2kEsik2/ZiQuRk0khd1HESofOm1yMBwbzsw+xLSyVOMml/OehDFSOxli7fAkk07wYtzAhxSB3Q==
+  dependencies:
+    tslib "^2.3.1"
+
 "@ngtools/webpack@13.2.6":
   version "13.2.6"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.2.6.tgz#8fe9c54dce13ec291eeef352ed773b77d1d0bed0"
@@ -2604,6 +2611,11 @@ custom-event@~1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/custom-event/-/custom-event-1.0.1.tgz#5d02a46850adf1b4a317946a3928fccb5bfd0425"
   integrity sha512-GAj5FOq0Hd+RsCGVJxZuKaIDXDf3h6GQoNEjFgbLLI/trgtavwUbSnZ5pVfg27DVCaWjIohryS0JFwIJyT2cMg==
+
+date-fns@^2.19.0:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.1.tgz#9667c2615525e552b5135a3116b95b1961456e60"
+  integrity sha512-dlLD5rKaKxpFdnjrs+5azHDFOPEu4ANy/LTh04A1DTzMM7qoajmKCBc8pkKRFT41CNzw+4gQh79X5C+Jq27HAw==
 
 date-format@^4.0.13:
   version "4.0.13"
@@ -4594,6 +4606,22 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ng2-datepicker@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/ng2-datepicker/-/ng2-datepicker-12.0.0.tgz#01b2fda9ccfe2b61a3c1ce7fc49f23b3fc81bc77"
+  integrity sha512-a6BjknB0+J/Xv4j/YC5nsBKBGZDm9L7Kiqm3U9PvP8LELS0pt5ReV9AN0QGRCAZISSIWtOIOXVsm8TBmX/f2ww==
+  dependencies:
+    date-fns "^2.19.0"
+    ngx-slimscroll "^11.0.0"
+    tslib "^2.0.0"
+
+ngx-slimscroll@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-slimscroll/-/ngx-slimscroll-11.0.0.tgz#6284d43886d09b25e0c50f4489e9c729b0b1577e"
+  integrity sha512-RCvqKnDfl9SmKggAFUHPaOgdjSi9p3FPqvcQexxoX7vYn2um27lmu7DAB2eKl9TJ9tykV+23ZGsTuxiPzwiXwQ==
+  dependencies:
+    tslib "^2.0.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"
@@ -6303,7 +6331,7 @@ tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.1.0, tslib@^2.3.0:
+tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
