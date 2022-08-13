@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { FilmModule } from './film/film.module';
 import { SharedModule } from './shared/shared.module';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     FilmModule,
     SharedModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

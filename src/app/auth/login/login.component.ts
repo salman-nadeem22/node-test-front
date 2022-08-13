@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  constructor(public authService: AuthService) {}
 
-  constructor() { }
+  credentials = {
+    email: '',
+    password: '',
+  };
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onSubmit() {
+    this.authService.login(this.credentials.email, this.credentials.password);
   }
-
 }
