@@ -4,16 +4,9 @@ import { FilmCardComponent } from './film-card/film-card.component';
 import { FilmListComponent } from './film-list/film-list.component';
 import { SingleFilmComponent } from './single-film/single-film.component';
 
-
-
 @NgModule({
-  declarations: [
-    FilmCardComponent,
-    FilmListComponent,
-    SingleFilmComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [FilmCardComponent, FilmListComponent, SingleFilmComponent],
+  imports: [CommonModule],
+  exports: [FilmCardComponent, FilmListComponent, SingleFilmComponent],
 })
-export class FilmModule { }
+export class FilmModule {}
