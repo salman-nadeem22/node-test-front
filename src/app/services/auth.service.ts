@@ -61,20 +61,22 @@ export class AuthService {
     });
   }
 
+  getUser() {
+    return this.http.get(environment.apiUrl + '/user/get-me', {
+      headers: {
+        Authorization: 'bearer ' + this.accessToken,
+      },
+    });
+  }
+
   private setUser(token: string) {
     localStorage.setItem(this.ACCESS_TOKEN, token);
     this.accessToken = token;
-    this.http
-      .get(environment.apiUrl + '/user/get-me', {
-        headers: {
-          Authorization: 'bearer ' + this.accessToken,
-        },
-      })
-      .subscribe({
-        next: ({ payload }: any) => {
-          this.user = payload;
-          localStorage.setItem(this.USER_DETAILS, JSON.stringify(payload));
-        },
-      });
+    this.getUser().subscribe({
+      next: ({ payload }: any) => {
+        this.user = payload;
+        localStorage.setItem(this.USER_DETAILS, JSON.stringify(payload));
+      },
+    });
   }
 }
