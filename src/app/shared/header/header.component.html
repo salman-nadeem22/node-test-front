@@ -1,9 +1,19 @@
 <div class="py-5 bg-[#efefef80] shadow px-4">
   <div class="w-full flex items-center justify-between container mx-auto">
-    <p class="text-2xl font-bold">Films</p>
-    <div class="flex items-center justify-center gap-6">
-      <a>Login</a>
-      <a>Register</a>
+    <a routerLink="/films" class="text-2xl font-bold">Films</a>
+    <div
+      *ngIf="!authService.accessToken"
+      class="flex items-center justify-center gap-6"
+    >
+      <a routerLink="/auth/login">Login</a>
+      <a routerLink="/auth/register">Register</a>
+    </div>
+    <div
+      *ngIf="authService.accessToken"
+      class="flex items-center justify-center gap-8"
+    >
+      <p>Welcome {{ authService.user?.email }}</p>
+      <button (click)="authService.logout()">Logout</button>
     </div>
   </div>
 </div>
