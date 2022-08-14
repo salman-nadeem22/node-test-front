@@ -164,10 +164,16 @@
                           </p>
                         </div>
                       </ng-container>
-                      <form #replyForm="ngForm" ngNativeValidate>
+                      <form
+                        #replyForm="ngForm"
+                        (ngSubmit)="submitReply(replyForm, comment._id)"
+                        ngNativeValidate
+                      >
                         <textarea
                           #replyInput="ngModel"
                           required
+                          name="comment"
+                          maxlength="500"
                           [(ngModel)]="replyMessage"
                           placeholder="Add Reply"
                           rows="2"
@@ -188,12 +194,18 @@
           </div>
         </div>
 
-        <form #commentForm="ngForm" ngNativeValidate>
+        <form
+          #commentForm="ngForm"
+          (ngSubmit)="submitComment(commentForm)"
+          ngNativeValidate
+        >
           <textarea
             #commentInput="ngModel"
             required
             [(ngModel)]="commentMessage"
             placeholder="Add Comment"
+            name="comment"
+            maxlength="500"
             rows="4"
             class="px-3 py-2 border rounded-md w-full"
           ></textarea>

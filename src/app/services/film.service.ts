@@ -20,6 +20,7 @@ export interface IComment {
 }
 
 export interface IFilm {
+  _id: string;
   name: string;
   slug: string;
   description: string;
@@ -44,6 +45,14 @@ export class FilmService {
 
   getSingleFilms(slug: string) {
     return this.http.get(`${environment.apiUrl}/movie/${slug}`);
+  }
+
+  createComment(data: any) {
+    return this.http.post(environment.apiUrl + '/movie/post-comment', data, {
+      headers: {
+        Authorization: 'bearer ' + this.authService.accessToken,
+      },
+    });
   }
 
   createFilm(data: string) {
