@@ -128,6 +128,32 @@
                   <p class="text-sm">
                     {{ comment.comment }}
                   </p>
+                  <form
+                    class="mt-5"
+                    *ngIf="authService.user?._id"
+                    #replyForm="ngForm"
+                    (ngSubmit)="
+                      submitComment(replyForm, 'firstReply', comment._id)
+                    "
+                    ngNativeValidate
+                  >
+                    <textarea
+                      #replyInput="ngModel"
+                      required
+                      name="comment"
+                      maxlength="500"
+                      [(ngModel)]="messages['firstReply']"
+                      placeholder="Add Reply"
+                      rows="2"
+                      class="px-3 py-2 border rounded-md w-full"
+                    ></textarea>
+                    <button
+                      type="submit"
+                      class="py-1 rounded-md bg-blue-500 text-white w-24 my-2"
+                    >
+                      Reply
+                    </button>
+                  </form>
                 </div>
               </div>
 
@@ -167,7 +193,9 @@
                       <form
                         *ngIf="authService.user?._id"
                         #replyForm="ngForm"
-                        (ngSubmit)="submitReply(replyForm, comment._id)"
+                        (ngSubmit)="
+                          submitComment(replyForm, 'reply', comment._id)
+                        "
                         ngNativeValidate
                       >
                         <textarea
@@ -175,7 +203,7 @@
                           required
                           name="comment"
                           maxlength="500"
-                          [(ngModel)]="replyMessage"
+                          [(ngModel)]="messages['reply']"
                           placeholder="Add Reply"
                           rows="2"
                           class="px-3 py-2 border rounded-md w-full"
@@ -198,13 +226,13 @@
         <form
           *ngIf="authService.user?._id"
           #commentForm="ngForm"
-          (ngSubmit)="submitComment(commentForm)"
+          (ngSubmit)="submitComment(commentForm, 'comment', null)"
           ngNativeValidate
         >
           <textarea
             #commentInput="ngModel"
             required
-            [(ngModel)]="commentMessage"
+            [(ngModel)]="messages['comment']"
             placeholder="Add Comment"
             name="comment"
             maxlength="500"

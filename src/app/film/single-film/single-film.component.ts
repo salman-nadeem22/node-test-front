@@ -18,46 +18,38 @@ export class SingleFilmComponent implements OnInit {
   film: IFilm | null = null;
   loading: boolean = false;
 
-  commentMessage: string = '';
-  replyMessage: string = '';
+  messages: Record<string, string> = {
+    comment: '',
+    reply: '',
+    firstReply: '',
+  };
 
-  submitReply(form: NgForm, parent: string) {
+  submitComment(form: NgForm, type: string, parent: string | null = null) {
     this.filmService
       .createComment({
+        comment: this.messages[type],
+        movie: this.film!._id,
         parent,
-        comment: this.replyMessage,
-        movie: this.film!._id,
       })
       .subscribe({
         next: ({ payload }: any) => {
-          this.film!.comments = this.film?.comments?.map(
-            (comment: IComment) => {
-              if (comment._id === parent) {
-                return {
-                  ...comment,
-                  children: [...(comment.children as IComment[]), payload],
-                };
+          if (parent) {
+            this.film!.comments = this.film?.comments?.map(
+              (comment: IComment) => {
+                if (comment._id === parent) {
+                  return {
+                    ...comment,
+                    children: comment?.children
+                      ? [...comment?.children, payload]
+                      : [payload],
+                  };
+                }
+                return comment;
               }
-              return comment;
-            }
-          );
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
-    form.resetForm();
-  }
-
-  submitComment(form: NgForm) {
-    this.filmService
-      .createComment({
-        comment: this.commentMessage,
-        movie: this.film!._id,
-      })
-      .subscribe({
-        next: ({ payload }: any) => {
-          this.film?.comments?.push(payload);
+            );
+          } else {
+            this.film?.comments?.push(payload);
+          }
         },
         error: (err) => {
           console.log(err);

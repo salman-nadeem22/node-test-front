@@ -1,6 +1,16 @@
 <div class="py-5 bg-[#efefef80] shadow px-4">
   <div class="w-full flex items-center justify-between container mx-auto">
-    <a routerLink="/films" class="text-2xl font-bold">Films</a>
+    <div>
+      <a routerLink="/films" class="text-2xl font-bold">Films</a>
+      <a
+        *ngIf="authService.accessToken"
+        routerLink="/films/create"
+        class="font-medium ml-20"
+      >
+        Create Film
+      </a>
+    </div>
+
     <div
       *ngIf="!authService.accessToken"
       class="flex items-center justify-center gap-6"
