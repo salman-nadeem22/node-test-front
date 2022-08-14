@@ -18,16 +18,10 @@ export class SingleFilmComponent implements OnInit {
   film: IFilm | null = null;
   loading: boolean = false;
 
-  messages: Record<string, string> = {
-    comment: '',
-    reply: '',
-    firstReply: '',
-  };
-
   submitComment(form: NgForm, type: string, parent: string | null = null) {
     this.filmService
       .createComment({
-        comment: this.messages[type],
+        comment: form.form.controls['comment'].value,
         movie: this.film!._id,
         parent,
       })
