@@ -40,6 +40,20 @@ export class AuthService {
       });
   }
 
+  register(data: any) {
+    this.loading = true;
+    this.http.post(environment.apiUrl + '/auth/register', data).subscribe({
+      next: (response: any) => {
+        this.loading = false;
+        this.setToken(response['payload']['access'] as string);
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errors = err;
+      },
+    });
+  }
+
   private setToken(token: string) {
     localStorage.setItem(this.ACCESS_TOKEN, token);
     this.accessToken = token;

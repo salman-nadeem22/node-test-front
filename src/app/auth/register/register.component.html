@@ -1,8 +1,10 @@
 <div class="max-w-xs my-20 mx-auto px-4">
-  <form>
+  <form #registerForm="ngForm" (submit)="onSubmit()">
     <p class="text-center font-bold text-2xl">Register</p>
     <div class="my-6 flex items-center justify-center flex-col gap-4">
       <input
+        #email="ngModel"
+        [(ngModel)]="registerData.email"
         type="email"
         name="email"
         placeholder="example@example.com"
@@ -10,20 +12,26 @@
         class="px-2 w-full py-2 border rounded-md"
       />
       <input
+        #username="ngModel"
+        [(ngModel)]="registerData.username"
         type="text"
         name="username"
         placeholder="John Doe"
         required
         class="px-2 w-full py-2 border rounded-md"
       />
+      <ngx-datepicker
+          #dateOfBirth="ngModel"
+          [(ngModel)]="registerData.dateOfBirth"
+          name="dateOfBirth"
+          id="dateOfBirth"
+          required
+          class="px-2 w-full py-2 focus:outline-none border rounded-md"
+          [options]="datepickerOption"
+        ></ngx-datepicker>
       <input
-        type="date"
-        name="dateOfBirth"
-        placeholder="2020-08-24"
-        required
-        class="px-2 w-full py-2 border rounded-md"
-      />
-      <input
+        #password="ngModel"
+        [(ngModel)]="registerData.password"
         class="px-2 w-full py-2 border rounded-md"
         type="password"
         name="password"
@@ -31,7 +39,10 @@
         required
       />
     </div>
-    <button class="block mx-auto py-1 rounded-md bg-blue-500 text-white w-full">
+    <button
+      type="submit"
+      class="block mx-auto py-1 rounded-md bg-blue-500 text-white w-full"
+    >
       Register
     </button>
   </form>
