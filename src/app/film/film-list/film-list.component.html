@@ -1,1 +1,3 @@
-<p>film-list works!</p>
+<div class="my-20 flex items-center container mx-auto justify-center gap-10 px-4 flex-wrap">
+  <app-film-card class="grow max-w-lg" *ngFor="let film of films[0]" [slug]="film.slug" [rating]="film.rating" [image]="film.photo" [description]="film.description" [name]="film.name"></app-film-card>
+</div>

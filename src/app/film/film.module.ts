@@ -7,6 +7,8 @@ import { CreateFilmComponent } from './create-film/create-film.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { DatepickerModule } from 'ng2-datepicker';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,14 @@ import { DatepickerModule } from 'ng2-datepicker';
     SingleFilmComponent,
     CreateFilmComponent,
   ],
-  imports: [CommonModule, NgSelectModule, FormsModule, DatepickerModule],
+  imports: [
+    CommonModule,
+    NgSelectModule,
+    FormsModule,
+    DatepickerModule,
+    RouterModule,
+    SharedModule
+  ],
   exports: [FilmCardComponent, FilmListComponent, SingleFilmComponent],
 })
 export class FilmModule {}
