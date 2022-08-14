@@ -164,6 +164,22 @@
                           </p>
                         </div>
                       </ng-container>
+                      <form #replyForm="ngForm" ngNativeValidate>
+                        <textarea
+                          #replyInput="ngModel"
+                          required
+                          [(ngModel)]="replyMessage"
+                          placeholder="Add Reply"
+                          rows="2"
+                          class="px-3 py-2 border rounded-md w-full"
+                        ></textarea>
+                        <button
+                          type="submit"
+                          class="py-1 rounded-md bg-blue-500 text-white w-24 my-2"
+                        >
+                          Reply
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -171,6 +187,23 @@
             </ng-container>
           </div>
         </div>
+
+        <form #commentForm="ngForm" ngNativeValidate>
+          <textarea
+            #commentInput="ngModel"
+            required
+            [(ngModel)]="commentMessage"
+            placeholder="Add Comment"
+            rows="4"
+            class="px-3 py-2 border rounded-md w-full"
+          ></textarea>
+          <button
+            type="submit"
+            class="py-1 rounded-md bg-blue-500 text-white w-24 my-2"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   </div>

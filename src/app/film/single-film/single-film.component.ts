@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { FilmService, IFilm } from './../../services/film.service';
+import { FilmService, IFilm, IComment } from './../../services/film.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,6 +14,9 @@ export class SingleFilmComponent implements OnInit {
   ) {}
   film: IFilm | null = null;
   loading: boolean = false;
+
+  commentMessage: string = '';
+  replyMessage: string = '';
 
   ngOnInit(): void {
     this.loading = true;
