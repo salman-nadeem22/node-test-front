@@ -49,7 +49,8 @@
     <div>
       <span class="font-medium">Ensure that these requirements are met:</span>
       <ul class="mt-1.5 ml-4 text-red-700 list-disc list-inside">
-        <li>{{ error | json }}</li>
+        <li>{{ error["message"] }}</li>
+        <li>Error Detail: {{ error | json }}</li>
       </ul>
     </div>
   </div>
