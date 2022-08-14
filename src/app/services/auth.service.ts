@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class AuthService {
   errors: any = null;
   loading = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const token = localStorage.getItem(this.ACCESS_TOKEN);
     if (token) this.accessToken = token;
   }
@@ -32,6 +33,7 @@ export class AuthService {
         next: (response: any) => {
           this.loading = false;
           this.setToken(response['payload']['access'] as string);
+          this.router.navigate(['/films']);
         },
         error: (err) => {
           this.loading = false;
@@ -46,6 +48,7 @@ export class AuthService {
       next: (response: any) => {
         this.loading = false;
         this.setToken(response['payload']['access'] as string);
+        this.router.navigate(['/films']);
       },
       error: (err) => {
         this.loading = false;
