@@ -10,6 +10,7 @@ import { FilmService, IFilm } from 'src/app/services/film.service';
 export class FilmListComponent implements OnInit {
   constructor(private filmService: FilmService) {}
   films: Array<IFilm[]> = [];
+  currentPage = 1;
 
   ngOnInit(): void {
     this.filmService.getAllFilms().subscribe({
@@ -28,5 +29,13 @@ export class FilmListComponent implements OnInit {
       })),
       10
     );
+  }
+
+  handlePrev() {
+    if (this.currentPage > 1) this.currentPage = this.currentPage - 1;
+  }
+  handleNext() {
+    if (this.currentPage < this.films.length)
+      this.currentPage = this.currentPage + 1;
   }
 }
