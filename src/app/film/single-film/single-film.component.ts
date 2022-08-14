@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService, IFilm, IComment } from './../../services/film.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,8 @@ import { NgForm } from '@angular/forms';
 export class SingleFilmComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private filmService: FilmService
+    private filmService: FilmService,
+    public authService: AuthService
   ) {}
   film: IFilm | null = null;
   loading: boolean = false;

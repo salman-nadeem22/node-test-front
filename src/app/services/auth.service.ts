@@ -41,7 +41,7 @@ export class AuthService {
         },
         error: (err) => {
           this.loading = false;
-          this.errors = err;
+          this.errors = err['error'];
         },
       });
   }
