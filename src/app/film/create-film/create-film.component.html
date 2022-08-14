@@ -1,9 +1,64 @@
 <div class="max-w-xl my-20 mx-auto px-4">
   <p class="text-center font-bold text-2xl">Create New Film</p>
-  <form #createFilmForm="ngForm">
-    <div
-      class="my-6 flex flex-wrap -mx-3 sm:-mx-3 md:-mx-3 lg:-mx-3 xl:-mx-3"
+  <div
+    *ngIf="!error"
+    class="flex my-4 p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
     >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 ml-4 text-blue-700 list-disc list-inside">
+        <li>All fields are required</li>
+      </ul>
+    </div>
+  </div>
+
+  <div
+    *ngIf="error"
+    class="my-4 flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+    role="alert"
+  >
+    <svg
+      aria-hidden="true"
+      class="flex-shrink-0 inline w-5 h-5 mr-3"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+    <span class="sr-only">Danger</span>
+    <div>
+      <span class="font-medium">Ensure that these requirements are met:</span>
+      <ul class="mt-1.5 ml-4 text-red-700 list-disc list-inside">
+        <li>{{ error | json }}</li>
+      </ul>
+    </div>
+  </div>
+  <form
+    #createFilmForm="ngForm"
+    (ngSubmit)="onSubmit(createFilmForm)"
+    ngNativeValidate
+  >
+    <div class="my-6 flex flex-wrap -mx-3 sm:-mx-3 md:-mx-3 lg:-mx-3 xl:-mx-3">
       <div
         class="my-3 px-3 w-full overflow-hidden sm:my-3 sm:px-3 md:my-3 md:px-3 lg:my-3 lg:px-3 lg:w-1/2 xl:my-3 xl:px-3 xl:w-1/2"
       >
@@ -46,7 +101,7 @@
           [multiple]="true"
           name="genre"
           dropdownPosition="bottom"
-          [(ngModel)]="film.selectedGenre"
+          [(ngModel)]="film.genre"
           placeholder="Select Genres"
         >
           <ng-option *ngFor="let genre of genres" [value]="genre.id">{{
@@ -134,6 +189,7 @@
       </div>
     </div>
     <button
+      [disabled]="!this.validateData()"
       type="submit"
       class="block mx-auto py-1 rounded-md bg-blue-500 text-white w-full"
     >

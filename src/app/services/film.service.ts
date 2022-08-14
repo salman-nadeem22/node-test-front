@@ -55,8 +55,8 @@ export class FilmService {
     });
   }
 
-  createFilm(data: string) {
-    return this.http.post(environment.apiUrl + '/movie/create', data, {
+  createFilm(data: any) {
+    return this.http.post(environment.apiUrl + '/movie', data, {
       headers: { Authorization: 'bearer ' + this.authService.accessToken },
     });
   }

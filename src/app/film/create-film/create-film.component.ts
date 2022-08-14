@@ -1,3 +1,5 @@
+import { FilmService } from 'src/app/services/film.service';
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import { DatepickerOptions } from 'ng2-datepicker';
@@ -8,14 +10,18 @@ import { DatepickerOptions } from 'ng2-datepicker';
   styleUrls: ['./create-film.component.scss'],
 })
 export class CreateFilmComponent implements OnInit {
-  constructor(private config: NgSelectConfig) {
+  constructor(
+    private config: NgSelectConfig,
+    private filmService: FilmService
+  ) {
     this.config.appendTo = 'body';
   }
+  error = null;
 
   film = {
     name: '',
     country: '',
-    selectedGenre: [],
+    genre: [],
     photo: '',
     releaseDate: null,
     rating: null,
@@ -36,5 +42,30 @@ export class CreateFilmComponent implements OnInit {
     calendarClass: 'datepicker-default',
     format: 'yyyy-MM-dd',
   };
+
   ngOnInit(): void {}
+
+  onSubmit(form: NgForm) {
+    this.filmService.createFilm(this.film).subscribe({
+      next: () => {
+        form.resetForm();
+      },
+      error: (err) => {
+        this.error = err['error'];
+      },
+    });
+  }
+
+  validateData() {
+    return (
+      this.film.name &&
+      this.film.country &&
+      this.film.description &&
+      this.film.photo &&
+      this.film.price &&
+      this.film.rating &&
+      this.film.releaseDate &&
+      this.film.genre.length
+    );
+  }
 }
